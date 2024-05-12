@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     environment {
-        TERRAFORM_STATE_BUCKET = "your-tf-state-bucket-name"
-        AWS_REGION = "your-aws-region"
+        TERRAFORM_STATE_BUCKET = "tf-state-bucket-name"
+        AWS_REGION = "aws-region"
     }
     
     stages {
