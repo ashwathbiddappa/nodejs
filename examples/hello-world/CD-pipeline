@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    
+    environment {
+        TERRAFORM_STATE_BUCKET = "your-tf-state-bucket-name"
+        AWS_REGION = "your-aws-region"
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository to access Terraform scripts
+                git branch: 'main', url: 'https://github.com/ashwathbiddappa/nodejs.git'
+            }
+        }
+        
+        stage('Deploy Infrastructure with Terraform') {
+            steps {
+                // Initialize Terraform
+                sh 'terraform init'
+                
+                // Plan Terraform changes
+                sh 'terraform plan -out=tfplan'
+                
+                // Apply Terraform changes
+                sh 'terraform apply tfplan'
+            }
+        }
+        
+        stage('Notify Stakeholders') {
+            steps {
+                // Send notification emails to stakeholders
+                // Example:
+                // emailext (
+                //    subject: "Deployment Successful",
+                //    body: "The deployment of infrastructure using Terraform was successful.",
+                //    to: "stakeholder@example.com"
+                // )
+            }
+        }
+    }
+}
