@@ -1,0 +1,43 @@
+
+Project Documentation
+1. Introduction
+This document provides an overview of the project setup, including the Dockerfile, CI/CD pipelines, and deployment procedure.
+
+2. Dockerfile
+The Dockerfile defines the environment and setup for running the Node.js application within a Docker container. Here's a breakdown of the Dockerfile:
+
+Base Image: Uses the official Node.js runtime as the base image.
+Maintainer: Specifies the maintainer of the Dockerfile.
+Working Directory: Sets the working directory within the container to /app/nodejs.
+Copy Application Code: Copies the application source code into the working directory.
+Expose Port: Exposes port 8080 for the web server.
+Run Command: Specifies the command to run the Node.js application.
+
+
+3. CI Pipeline (Jenkins)
+The CI pipeline automates the build, test, and deployment process of the Node.js application. Here's how the CI pipeline works:
+
+Checkout: Clones the source code from the repository.
+Build Docker Image: Builds the Docker image for the Node.js application.
+Run Tests: Executes any tests associated with the application (currently a dummy test).
+Push to ECR: Tags and pushes the Docker image to an ECR (Elastic Container Registry) repository.
+
+
+4. CD Pipeline (Jenkins)
+The CD pipeline automates the deployment of the infrastructure and the application to AWS ECS. Here's how the CD pipeline works:
+
+Checkout: Clones the Terraform scripts from the repository.
+Deploy Infrastructure with Terraform: Initializes Terraform, plans the infrastructure changes, and applies them to create the ECS cluster and associated resources.
+Notify Stakeholders: Sends notification emails to stakeholders about the successful deployment.
+
+5. Terraform Deployment
+The Terraform script deploys the ECS cluster, task definition, and service for the Node.js application. Here's a breakdown of the Terraform script:
+
+6.USAGE OF WEBHOOKS :
+
+i'll use webhooks to automate the build process whenever changes are made build will get triggered 
+
+
+
+7. Conclusion
+This document provides an overview of the project setup and workflow. Refer to specific sections for detailed information on each component.
