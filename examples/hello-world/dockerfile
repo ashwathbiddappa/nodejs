@@ -1,0 +1,23 @@
+# Use an official Node.js runtime as a parent image
+FROM node:latest
+
+# maintaier of the report
+MAINTAINER  ASHWATH
+
+# Set the working directory in the container
+WORKDIR /app/nodej.s
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy application source code to the working directory
+COPY . .
+
+# Expose port 8080 for the web server
+EXPOSE 8080
+
+# run your Node.js application
+CMD ["node", "index.js"]
