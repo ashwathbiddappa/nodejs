@@ -5,13 +5,7 @@ FROM node:latest
 MAINTAINER  ASHWATH
 
 # Set the working directory in the container
-WORKDIR /app/nodej.s
-
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
+WORKDIR /app/nodejs
 
 # Copy application source code to the working directory
 COPY . .
